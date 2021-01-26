@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Provider } from 'react-redux';
+import store from './src/store';
 import CheckoutScreen from './src/screens/CheckoutScreen';
 import StoreScreen from './src/screens/StoreScreen';
 
@@ -17,4 +19,8 @@ const App = () => {
   );
 };
 
-export default App;
+export default () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
