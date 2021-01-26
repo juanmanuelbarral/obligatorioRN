@@ -4,6 +4,8 @@ import RoundImage from '../components/RoundImage';
 import avocadoImg from '../assets/Avocado.png';
 import grapefruitImg from '../assets/Grapefruit-2.png';
 import RoundCornersImage from '../components/RoundCornersImage';
+import AddButton from '../components/AddButton';
+import QuantityControl from '../components/QuantityControl';
 
 const StoreScreen = () => {
   return (
@@ -14,6 +16,8 @@ const StoreScreen = () => {
         source={grapefruitImg}
         style={styles.roundedCornersImage}
       />
+      <AddButton />
+      <QuantityControl />
     </View>
   );
 };

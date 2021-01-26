@@ -12,10 +12,10 @@ ButtonBorder.defaultProps = {
 
 const styles = StyleSheet.create({
   containerStyle: {
-    height: 30,
-    width: 80,
+    height: 32,
+    width: 82,
     justifyContent: 'center',
-    borderRadius: 15,
+    borderRadius: 16,
     borderWidth: 2,
   },
 });
