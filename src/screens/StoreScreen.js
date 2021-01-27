@@ -1,41 +1,37 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import RoundImage from '../components/RoundImage';
-import avocadoImg from '../assets/Avocado.png';
-import grapefruitImg from '../assets/Grapefruit-2.png';
-import RoundCornersImage from '../components/RoundCornersImage';
-import AddButton from '../components/AddButton';
-import QuantityControl from '../components/QuantityControl';
+import { StyleSheet, View, SectionList } from 'react-native';
 import Text from '../components/Text';
-import { colors } from '../resources/colors';
-import SearchBar from '../components/SearchBar';
+import storeItems from '../db/items';
 
 const StoreScreen = () => {
+  const sections = parseDataToSections(storeItems);
+
   return (
     <View>
-      <Text>StoreScreen</Text>
-      <Text grey>StoreScreen</Text>
-      <Text style={{ color: colors.grey400 }}>StoreScreen</Text>
-      <Text h1>StoreScreen</Text>
-      <Text h2 grey>StoreScreen</Text>
-      <Text h3>StoreScreen</Text>
-      <RoundImage source={avocadoImg} />
-      <RoundCornersImage
-        source={grapefruitImg}
-        style={styles.roundedCornersImage}
+      <SectionList
+        sections={sections}
+        keyExtractor={(item) => {
+          // Here the item stands for each item of each section
+          return item.item_id;
+        }}
+        renderItem={({ item }) => {
+          const text = `${item.name} - ${item.price}`
+          return <Text>{text}</Text>;
+        }}
+        renderSectionHeader={({ section }) => {
+          const { title } = section;
+          return <Text>{title}</Text>;
+        }}
       />
-      <AddButton />
-      <QuantityControl />
-      <SearchBar />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  roundedCornersImage: {
-    height: 120,
-    width: 120,
-  },
+const parseDataToSections = (data) => data.map((item) => {
+  const { section_id, name, items } = item;
+  return { key: section_id, title: name, data: items };
 });
+
+const styles = StyleSheet.create({});
 
 export default StoreScreen;

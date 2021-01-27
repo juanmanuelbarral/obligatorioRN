@@ -1,12 +1,15 @@
-const commonLog = (emoji, key, message) => {
+const commonLog = (emoji, key, sth) => {
   const keyText = key ? `[${key.toUpperCase()}] ` : '';
-  const logText = `${emoji} - ${keyText}${message}`;
-  console.log(logText);
+  const logTextStart = `${emoji} -> ${keyText}`;
+  const logTextEnd = `${emoji} <- \n`;
+  console.log(logTextStart);
+  console.log(sth);
+  console.log(logTextEnd);
 };
 
-const d = (message, key) => commonLog('🐛', key, message);
-const e = (message, key) => commonLog('❌', key, message);
-const i = (message, key) => commonLog('ℹ️ ', key, message);
-const w = (message, key) => commonLog('🥴', key, message);
+const d = (sth, key) => commonLog('🐛', key, sth);
+const e = (sth, key) => commonLog('❌', key, sth);
+const i = (sth, key) => commonLog('ℹ️ ', key, sth);
+const w = (sth, key) => commonLog('🥴', key, sth);
 
 export default { d, e, i, w };
