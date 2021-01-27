@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, SectionList } from 'react-native';
-import Text from '../components/Text';
+import ListSeparator from '../components/ListSeparator';
+import StoreItem from '../components/store/StoreItem';
+import StoreSection from '../components/store/StoreSection';
 import storeItems from '../db/items';
 
 const StoreScreen = () => {
@@ -14,14 +16,13 @@ const StoreScreen = () => {
           // Here the item stands for each item of each section
           return item.item_id;
         }}
-        renderItem={({ item }) => {
-          const text = `${item.name} - ${item.price}`
-          return <Text>{text}</Text>;
-        }}
+        renderItem={({ item }) => <StoreItem item={item} />}
         renderSectionHeader={({ section }) => {
           const { title } = section;
-          return <Text>{title}</Text>;
+          return <StoreSection sectionText={title} />;
         }}
+        ItemSeparatorComponent={() => <ListSeparator />}
+        SectionSeparatorComponent={() => <ListSeparator />}
       />
     </View>
   );
