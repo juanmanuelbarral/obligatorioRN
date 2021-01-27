@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View, SectionList } from 'react-native';
 import * as actions from '../actions';
@@ -7,11 +7,21 @@ import ListSeparator from '../components/ListSeparator';
 import StoreHeader from '../components/store/StoreHeader';
 import StoreItem from '../components/store/StoreItem';
 import StoreSection from '../components/store/StoreSection';
+import HeaderIcon from '../components/HeaderIcon';
+import iconCart from '../assets/icon-cart.png';
 
-const StoreScreen = ({ sections, fetchStore }) => {
+const StoreScreen = ({ navigation, sections, fetchStore }) => {
   useEffect(() => {
     fetchStore();
   }, [fetchStore]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <HeaderIcon source={iconCart} onPress={() => navigation.navigate('Checkout')} />
+      ),
+    });
+  }, [navigation]);
 
   return (
     <View>

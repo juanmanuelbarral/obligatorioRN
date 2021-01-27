@@ -2,6 +2,6 @@ module.exports = {
   root: true,
   extends: '@react-native-community',
   rules: {
-    "prettier/prettier": false
+    "prettier/prettier": 0
   }
 };
