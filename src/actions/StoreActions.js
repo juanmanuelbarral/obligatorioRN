@@ -5,3 +5,8 @@ export const fetchStore = () => ({
   type: types.FETCH_STORE,
   payload: storeItems
 });
+
+export const searchInput = (input) => ({
+  type: types.SEARCH_INPUT,
+  payload: input
+});

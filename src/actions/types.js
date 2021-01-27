@@ -4,3 +4,4 @@ export const CART_ITEM_INCREASE = 'cart_item_increase';
 
 // Store
 export const FETCH_STORE = 'fetch_store';
+export const SEARCH_INPUT = 'search_input';
