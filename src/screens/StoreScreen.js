@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { StyleSheet, View, SectionList } from 'react-native';
+import * as actions from '../actions';
 import ListSeparator from '../components/ListSeparator';
 import StoreItem from '../components/store/StoreItem';
 import StoreSection from '../components/store/StoreSection';
-import storeItems from '../db/items';
 
-const StoreScreen = () => {
-  const sections = parseDataToSections(storeItems);
+const StoreScreen = ({ sections, fetchStore }) => {
+  useEffect(() => {
+    fetchStore();
+  }, []);
 
   return (
     <View>
@@ -35,4 +38,8 @@ const parseDataToSections = (data) => data.map((item) => {
 
 const styles = StyleSheet.create({});
 
-export default StoreScreen;
+const mapStateToProps = (state) => ({
+  sections: parseDataToSections(state.store)
+});
+
+export default connect(mapStateToProps, actions)(StoreScreen);
