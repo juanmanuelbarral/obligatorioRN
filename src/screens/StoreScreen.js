@@ -11,7 +11,7 @@ import StoreSection from '../components/store/StoreSection';
 const StoreScreen = ({ sections, fetchStore }) => {
   useEffect(() => {
     fetchStore();
-  }, []);
+  }, [fetchStore]);
 
   return (
     <View>
@@ -28,7 +28,7 @@ const StoreScreen = ({ sections, fetchStore }) => {
         }}
         ItemSeparatorComponent={() => <ListSeparator />}
         SectionSeparatorComponent={() => <ListSeparator />}
-        ListHeaderComponent={() => <StoreHeader />}
+        ListHeaderComponent={<StoreHeader />}
       />
     </View>
   );
@@ -57,8 +57,8 @@ const styles = StyleSheet.create({});
 const mapStateToProps = (state) => {
   const { items, search } = state.store;
   return {
-    sections: parseDataToSections(items, search)
-  }
+    sections: parseDataToSections(items, search),
+  };
 };
 
 export default connect(mapStateToProps, actions)(StoreScreen);
