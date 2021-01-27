@@ -1,14 +1,15 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 import AddButton from '../AddButton';
 import QuantityControl from '../QuantityControl';
 import RoundImage from '../RoundImage';
 import Text from '../Text';
 
-const StoreItem = ({ item }) => {
-  const { name, price, imgSmall } = item;
-  const quantity = 0;
-  //TODO: connect with redux store
+const StoreItem = (props) => {
+  const { item, quantity, cartItemDecrease, cartItemIncrease } = props;
+  const { item_id, name, price, imgSmall } = item;
 
   return (
     <View style={styles.containerStyle}>
@@ -20,8 +21,14 @@ const StoreItem = ({ item }) => {
       </View>
 
       {quantity === 0
-        ? <AddButton />
-        : <QuantityControl quantity={quantity} />
+        ? <AddButton onPress={() => cartItemIncrease(item_id)} />
+        : (
+          <QuantityControl
+            quantity={quantity}
+            onPressMinus={() => cartItemDecrease(item_id)}
+            onPressPlus={() => cartItemIncrease(item_id)}
+          />
+        )
       }
     </View>
   );
@@ -42,4 +49,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default StoreItem;
+const mapStateToProps = (state, ownProps) => {
+  const { item: { item_id } } = ownProps;
+  const quantity = state.cart[item_id] || 0;
+
+  return { quantity };
+};
+
+export default connect(mapStateToProps, actions)(StoreItem);
