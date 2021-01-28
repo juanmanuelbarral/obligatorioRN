@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text, FlatList, Button } from 'react-native';
 import { connect } from 'react-redux';
-
+import * as actions from '../actions';
 import grapefruitImg from '../assets/Grapefruit-2.png';
 import RoundCornersImage from '../components/RoundCornersImage';
 
-const CheckoutScreen = ({ data }) => {
+const CheckoutScreen = ({ data, total, checkout }) => {
   return (
     <View>
       <Text>CheckoutScreen</Text>
@@ -18,6 +18,8 @@ const CheckoutScreen = ({ data }) => {
         keyExtractor={(item) => item.key}
         renderItem={({ item }) => <Text>{`${item.name} ${item.quantity}`}</Text>}
       />
+      <Text>{`TOTAL: ${total}`}</Text>
+      <Button title="Checkout" onPress={() => checkout()} />
     </View>
   );
 };
@@ -32,11 +34,13 @@ const styles = StyleSheet.create({
 const makeCartData = (items, cartQuantities) => {
   const allItems = items.flatMap(it => it.items);
   let result = [];
+  let total = 0;
 
   for (let itemKey in cartQuantities) {
     const item = allItems.find(it => it.item_id === itemKey);
     if (item) {
       const quantity = cartQuantities[itemKey];
+      total += item.price * quantity;
       result.push({
         key: item.item_id,
         name: item.name,
@@ -47,14 +51,18 @@ const makeCartData = (items, cartQuantities) => {
     }
   }
 
-  console.log(result);
-  return result;
+  return { data: result, total };
 };
 
 const mapStateToProps = state => {
   const { store, cart } = state;
   const { items } = store;
-  return { data: makeCartData(items, cart) };
+  const { data, total } = makeCartData(items, cart);
+  return { data, total };
 };
 
-export default connect(mapStateToProps)(CheckoutScreen);
+const mapDispatchToProps = {
+  checkout: actions.checkout,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutScreen);
