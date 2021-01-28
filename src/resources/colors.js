@@ -3,4 +3,5 @@ export const colors = {
   blueGrey200_a40: 'rgba(176, 190, 197, 0.4)',
   grey400: '#BDBDBD',
   grey600: '#757575',
+  transparent: 'rgba(255, 255, 255, 0)',
 };
