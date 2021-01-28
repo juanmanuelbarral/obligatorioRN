@@ -12,6 +12,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, [payload]: getNextQuantity(state[payload], -1) };
     case types.CART_ITEM_INCREASE:
       return { ...state, [payload]: getNextQuantity(state[payload], +1) };
+    case types.CHECKOUT:
+      return INITIAL_STATE;
     default:
       return state;
   }

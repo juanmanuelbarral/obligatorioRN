@@ -2,7 +2,7 @@ import * as types from '../actions/types';
 
 const INITIAL_STATE = {
   search: '',
-  items: []
+  items: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
