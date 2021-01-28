@@ -2,13 +2,18 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import Banner from '../Banner';
 import SearchBar from '../SearchBar';
+import Separator from '../Separator';
 
 const StoreHeader = ({ value, searchInput }) => {
   return (
     <View style={styles.containerStyle}>
-      {/* //TODO add banner */}
-      
+      <Separator bottom={20}>
+        {/* //TODO: aux only banner - will have to make carrousel */}
+        <Banner />
+      </Separator>
+
       <SearchBar
         containerStyle={styles.searchBarStyle}
         value={value}
@@ -20,15 +25,15 @@ const StoreHeader = ({ value, searchInput }) => {
 
 const styles = StyleSheet.create({
   containerStyle: {
-    marginVertical: 10
+    marginVertical: 10,
   },
   searchBarStyle: {
-    marginHorizontal: 15
-  }
+    marginHorizontal: 15,
+  },
 });
 
 const mapStateToProps = (state) => ({
-  value: state.store.search
+  value: state.store.search,
 });
 
 export default connect(mapStateToProps, actions)(StoreHeader);
