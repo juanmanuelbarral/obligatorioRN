@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 const Separator = ({ children, hz, vt, top, bottom, left, right }) => {
   let containerStyle = {
@@ -21,6 +21,6 @@ const Separator = ({ children, hz, vt, top, bottom, left, right }) => {
   );
 };
 
-const styles = StyleSheet.create({});
+// const styles = StyleSheet.create({});
 
 export default Separator;

@@ -1,33 +1,46 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, Button } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import grapefruitImg from '../assets/Grapefruit-2.png';
-import RoundCornersImage from '../components/RoundCornersImage';
+import BigButton from '../components/BigButton';
+import Text from '../components/Text';
+import TotalPrice from '../components/checkout/TotalPrice';
+import Separator from '../components/Separator';
+import { dimens } from '../resources/dimens';
+import CheckoutItem from '../components/checkout/CheckoutItem';
 
 const CheckoutScreen = ({ data, total, checkout }) => {
   return (
-    <View>
-      <Text>CheckoutScreen</Text>
-      <RoundCornersImage
-        source={grapefruitImg}
-        style={styles.roundedCornersImage}
-      />
+    <View style={styles.container}>
+      <Separator hz={15} vt={10}>
+        <Text h1>Shopping Cart</Text>
+      </Separator>
+
+      <CheckoutItem item={data[0]} />
+
       <FlatList
         data={data}
         keyExtractor={(item) => item.key}
         renderItem={({ item }) => <Text>{`${item.name} ${item.quantity}`}</Text>}
       />
-      <Text>{`TOTAL: ${total}`}</Text>
-      <Button title="Checkout" onPress={() => checkout()} />
+
+      <TotalPrice price={total} />
+
+      <Separator
+        hz={dimens.screenMarginHz}
+        top={10}
+        bottom={30}
+      >
+        <BigButton title="Checkout" onPress={() => checkout()} />
+      </Separator>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  roundedCornersImage: {
-    height: 120,
-    width: 120,
+  container: {
+    flex: 1,
+    paddingBottom: 20,
   },
 });
 
