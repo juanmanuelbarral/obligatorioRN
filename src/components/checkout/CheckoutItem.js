@@ -6,7 +6,7 @@ import Text from '../Text';
 const CheckoutItem = ({ item }) => {
   const { name, price, image, quantity } = item;
   const window = useWindowDimensions();
-  const width = window.width * 0.4;
+  const width = window.width * 0.44;
 
   const containerStyle = { ...styles.containerStyle, width };
   const imageStyle = { ...styles.imageStyle, width, height: width };

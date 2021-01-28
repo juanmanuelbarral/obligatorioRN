@@ -12,16 +12,19 @@ import CheckoutItem from '../components/checkout/CheckoutItem';
 const CheckoutScreen = ({ data, total, checkout }) => {
   return (
     <View style={styles.container}>
-      <Separator hz={15} vt={10}>
+      <Separator hz={15} top={10} bottom={20}>
         <Text h1>Shopping Cart</Text>
       </Separator>
-
-      <CheckoutItem item={data[0]} />
 
       <FlatList
         data={data}
         keyExtractor={(item) => item.key}
-        renderItem={({ item }) => <Text>{`${item.name} ${item.quantity}`}</Text>}
+        renderItem={({ item }) => (
+          <View style={styles.listItemContainerStyle}>
+            <CheckoutItem item={item} />
+          </View>
+        )}
+        numColumns={2}
       />
 
       <TotalPrice price={total} />
@@ -42,6 +45,11 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 20,
   },
+  listItemContainerStyle: {
+    flex: 1,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
 });
 
 const makeCartData = (items, cartQuantities) => {
@@ -51,8 +59,8 @@ const makeCartData = (items, cartQuantities) => {
 
   for (let itemKey in cartQuantities) {
     const item = allItems.find(it => it.item_id === itemKey);
-    if (item) {
-      const quantity = cartQuantities[itemKey];
+    const quantity = cartQuantities[itemKey];
+    if (item && quantity > 0) {
       total += item.price * quantity;
       result.push({
         key: item.item_id,
