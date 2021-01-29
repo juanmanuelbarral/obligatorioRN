@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state, ownProps) => {
   const { item: { item_id } } = ownProps;
-  const quantity = state.cart[item_id] || 0;
-
+  const { cartItems } = state.cart;
+  const quantity = cartItems[item_id] || 0;
   return { quantity };
 };
 
