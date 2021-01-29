@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { navigationRef, isReadyRef } from './src/RootNavigation';
 import { Provider } from 'react-redux';
 import store from './src/store';
+import Toast from 'react-native-toast-message';
 import CheckoutScreen from './src/screens/CheckoutScreen';
 import StoreScreen from './src/screens/StoreScreen';
 import HeaderIcon from './src/components/HeaderIcon';
@@ -40,5 +41,6 @@ const App = () => {
 export default () => (
   <Provider store={store}>
     <App />
+    <Toast ref={(ref) => Toast.setRef(ref)} />
   </Provider>
 );
