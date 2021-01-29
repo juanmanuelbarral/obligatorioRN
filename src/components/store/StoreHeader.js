@@ -36,4 +36,8 @@ const mapStateToProps = (state) => ({
   value: state.store.search,
 });
 
-export default connect(mapStateToProps, actions)(StoreHeader);
+const mapDispatchToProps = {
+  searchInput: actions.searchInput,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(StoreHeader);

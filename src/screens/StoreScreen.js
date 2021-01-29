@@ -71,4 +71,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, actions)(StoreScreen);
+const mapDispatchToProps = {
+  fetchStore: actions.fetchStore,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(StoreScreen);

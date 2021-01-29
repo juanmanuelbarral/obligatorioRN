@@ -56,4 +56,9 @@ const mapStateToProps = (state, ownProps) => {
   return { quantity };
 };
 
-export default connect(mapStateToProps, actions)(StoreItem);
+const mapDispatchToProps = {
+  cartItemDecrease: actions.cartItemDecrease,
+  cartItemIncrease: actions.cartItemIncrease,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(StoreItem);
