@@ -16,3 +16,5 @@ export const searchInput = (input) => ({
   type: types.SEARCH_INPUT,
   payload: input,
 });
+
+export const clearSearchInput = () => searchInput('');

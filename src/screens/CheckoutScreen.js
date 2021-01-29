@@ -10,7 +10,7 @@ import Separator from '../components/Separator';
 import { dimens } from '../resources/dimens';
 import CheckoutItem from '../components/checkout/CheckoutItem';
 
-const CheckoutScreen = ({ data, total, canCheckout, checkout }) => {
+const CheckoutScreen = ({ data, total, canCheckout, checkout, clearSearchInput }) => {
   return (
     <Screen style={styles.container}>
       <Separator hz={15} top={10} bottom={20}>
@@ -37,7 +37,10 @@ const CheckoutScreen = ({ data, total, canCheckout, checkout }) => {
       >
         <BigButton
           title="Checkout"
-          onPress={() => checkout()}
+          onPress={() => {
+            checkout();
+            clearSearchInput();
+          }}
           disabled={!canCheckout}
         />
       </Separator>
@@ -89,6 +92,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   checkout: actions.checkout,
+  clearSearchInput: actions.clearSearchInput,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutScreen);

@@ -24,7 +24,6 @@ export default (state = INITIAL_STATE, action) => {
     case types.CART_ITEM_INCREASE:
       checkEndOfStock(cartItems[payload], +1);
       newItems = { ...cartItems, [payload]: getNextQuantity(cartItems[payload], +1) };
-      console.log(newItems);
       return {
         ...state,
         cartItems: newItems,

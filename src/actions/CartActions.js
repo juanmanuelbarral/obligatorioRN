@@ -11,8 +11,6 @@ export const cartItemIncrease = (itemId) => ({
   payload: itemId,
 });
 
-//TODO: pop navigation from here
-//TODO: also look for a way of also clearing the search text?
 export const checkout = () => {
   goBack();
   return { type: types.CHECKOUT };
