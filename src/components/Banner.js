@@ -1,17 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, useWindowDimensions } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import RoundCornersImage from './RoundCornersImage';
 import Text from './Text';
 import { colors } from '../resources/colors';
-import { dimens } from '../resources/dimens';
-import imgBanner1 from '../assets/Banner-1.png';
+import imgPlaceholder from '../assets/Banner-1.png';
 
 const BANNER_HEIGHT_RATIO = 7 / 16;
-const BANNER_MARGIN_HZ = dimens.screenMarginHz;
 
-const Banner = () => {
-  const window = useWindowDimensions();
-  const bannerWidth = window.width - BANNER_MARGIN_HZ * 2;
+const Banner = ({ title, info, image, bannerWidth }) => {
   const bannerHeight = bannerWidth * BANNER_HEIGHT_RATIO;
 
   const imageStyle = {
@@ -22,21 +18,25 @@ const Banner = () => {
 
   return (
     <View style={styles.containerStyle}>
-      <RoundCornersImage source={imgBanner1} style={imageStyle} />
+      <RoundCornersImage source={image} style={imageStyle} />
 
       <View style={styles.textContainerStyle}>
-        <Text style={styles.textSecondaryStyle}>Product of the month</Text>
-        <Text h2 style={styles.textPrimaryStyle}>Brazilian Bananas</Text>
+        <Text style={styles.textSecondaryStyle}>{info}</Text>
+        <Text h2 style={styles.textPrimaryStyle}>{title}</Text>
       </View>
     </View>
   );
 };
 
-Banner.defaultProps = {};
+Banner.defaultProps = {
+  bannerWidth: 200,
+  title: '',
+  info: '',
+  image: imgPlaceholder,
+};
 
 const styles = StyleSheet.create({
   containerStyle: {
-    marginHorizontal: BANNER_MARGIN_HZ,
     justifyContent: 'flex-end',
   },
   imageStyle: {

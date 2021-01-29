@@ -2,16 +2,15 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import Banner from '../Banner';
 import SearchBar from '../SearchBar';
 import Separator from '../Separator';
+import StoreCarousel from './StoreCarousel';
 
 const StoreHeader = ({ value, searchInput }) => {
   return (
     <View style={styles.containerStyle}>
       <Separator bottom={20}>
-        {/* //TODO: aux only banner - will have to make carrousel */}
-        <Banner />
+        <StoreCarousel />
       </Separator>
 
       <SearchBar
