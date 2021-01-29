@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   search: '',
   items: [],
   filteredItems: [],
+  banners: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -13,6 +14,8 @@ export default (state = INITIAL_STATE, action) => {
   let filteredItems;
 
   switch (type) {
+    case types.FETCH_BANNERS:
+      return { ...state, banners: payload };
     case types.FETCH_STORE:
       filteredItems = filterSections(payload, search);
       return { ...state, items: payload, filteredItems };
