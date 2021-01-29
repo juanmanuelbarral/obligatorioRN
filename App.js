@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { navigationRef, isReadyRef } from './src/RootNavigation';
 import { Provider } from 'react-redux';
 import store from './src/store';
 import CheckoutScreen from './src/screens/CheckoutScreen';
@@ -13,7 +14,12 @@ const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      ref={navigationRef}
+      onReady={() => {
+        isReadyRef.current = true;
+      }}
+    >
       <Stack.Navigator
         screenOptions={{
           headerBackImage: () => <HeaderIcon source={iconBack} />,

@@ -1,4 +1,5 @@
 import * as types from './types';
+import { goBack } from '../RootNavigation';
 
 export const cartItemDecrease = (itemId) => ({
   type: types.CART_ITEM_DECREASE,
@@ -12,6 +13,7 @@ export const cartItemIncrease = (itemId) => ({
 
 //TODO: pop navigation from here
 //TODO: also look for a way of also clearing the search text?
-export const checkout = () => ({
-  type: types.CHECKOUT,
-});
+export const checkout = () => {
+  goBack();
+  return { type: types.CHECKOUT };
+};
