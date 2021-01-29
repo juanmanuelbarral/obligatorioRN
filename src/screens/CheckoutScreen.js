@@ -3,6 +3,7 @@ import { StyleSheet, View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import BigButton from '../components/BigButton';
+import Screen from '../components/Screen';
 import Text from '../components/Text';
 import TotalPrice from '../components/checkout/TotalPrice';
 import Separator from '../components/Separator';
@@ -11,7 +12,7 @@ import CheckoutItem from '../components/checkout/CheckoutItem';
 
 const CheckoutScreen = ({ data, total, canCheckout, checkout }) => {
   return (
-    <View style={styles.container}>
+    <Screen style={styles.container}>
       <Separator hz={15} top={10} bottom={20}>
         <Text h1>Shopping Cart</Text>
       </Separator>
@@ -40,13 +41,12 @@ const CheckoutScreen = ({ data, total, canCheckout, checkout }) => {
           disabled={!canCheckout}
         />
       </Separator>
-    </View>
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     paddingBottom: 20,
   },
   listItemContainerStyle: {

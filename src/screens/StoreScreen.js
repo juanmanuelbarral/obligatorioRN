@@ -1,8 +1,9 @@
 import React, { useEffect, useLayoutEffect } from 'react';
 import { connect } from 'react-redux';
-import { View, SectionList } from 'react-native';
+import { SectionList } from 'react-native';
 import * as actions from '../actions';
 import ListSeparator from '../components/ListSeparator';
+import Screen from '../components/Screen';
 import StoreHeader from '../components/store/StoreHeader';
 import StoreItem from '../components/store/StoreItem';
 import StoreSection from '../components/store/StoreSection';
@@ -23,7 +24,7 @@ const StoreScreen = ({ navigation, sections, fetchStore }) => {
   }, [navigation]);
 
   return (
-    <View>
+    <Screen>
       <SectionList
         sections={sections}
         keyExtractor={(item) => {
@@ -39,7 +40,7 @@ const StoreScreen = ({ navigation, sections, fetchStore }) => {
         SectionSeparatorComponent={() => <ListSeparator />}
         ListHeaderComponent={<StoreHeader />}
       />
-    </View>
+    </Screen>
   );
 };
 

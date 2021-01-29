@@ -9,7 +9,7 @@ import CheckoutScreen from './src/screens/CheckoutScreen';
 import StoreScreen from './src/screens/StoreScreen';
 import HeaderIcon from './src/components/HeaderIcon';
 import iconBack from './src/assets/icon-back.png';
-import { colors } from './src/resources/colors';
+import { appColors } from './src/resources/colors';
 
 const Stack = createStackNavigator();
 
@@ -26,7 +26,11 @@ const App = () => {
           headerBackImage: () => <HeaderIcon source={iconBack} />,
           headerBackTitleVisible: false,
           headerStyle: {
-            backgroundColor: colors.transparent,
+            backgroundColor: appColors.backgroundGeneral,
+            shadowRadius: 0,
+            shadowOffset: {
+              height: 0,
+            },
           },
           headerTitle: '',
         }}
