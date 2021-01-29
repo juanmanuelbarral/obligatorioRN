@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   listItemContainerStyle: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginBottom: 10,
   },
 });

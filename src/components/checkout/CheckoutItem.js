@@ -3,12 +3,16 @@ import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import RoundCornersImage from '../RoundCornersImage';
 import Text from '../Text';
 
+const WIDTH_PERCENT = 0.44;
+const MARGIN_HZ_PERCERNT = (0.5 - WIDTH_PERCENT) / 2;
+
 const CheckoutItem = ({ item }) => {
   const { name, price, image, quantity } = item;
-  const window = useWindowDimensions();
-  const width = window.width * 0.44;
+  const { width: windowWidth } = useWindowDimensions();
+  const width = windowWidth * WIDTH_PERCENT;
+  const marginHorizontal = windowWidth * MARGIN_HZ_PERCERNT;
 
-  const containerStyle = { ...styles.containerStyle, width };
+  const containerStyle = { ...styles.containerStyle, width, marginHorizontal };
   const imageStyle = { ...styles.imageStyle, width, height: width };
 
   return (
