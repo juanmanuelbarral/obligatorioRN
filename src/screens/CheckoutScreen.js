@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const makeCartData = (items, cartQuantities) => {
-  const allItems = items.flatMap(it => it.items);
+const makeCartData = (sections, cartQuantities) => {
+  const allItems = sections.flatMap(it => it.items);
   let result = [];
   let total = 0;
 
